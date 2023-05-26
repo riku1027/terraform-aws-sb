@@ -323,3 +323,20 @@ HCL2 における外部から変数値を与える方法は下記 3 種類です
 ```
 
 ```
+# アプリケーション作成
+## 作成するアプリケーションの概要
+**全体構成図**
+<img width="1232" alt="image" src="https://github.com/riku1027/terraform-sandbox/assets/45778163/5e134f4a-d26d-48c6-a5c0-11680b74d66c">
+<img width="968" alt="image" src="https://github.com/riku1027/terraform-sandbox/assets/45778163/4d246e67-0f10-41bf-8bca-da200cc55ec2">
+<img width="951" alt="image" src="https://github.com/riku1027/terraform-sandbox/assets/45778163/74070f0f-e4f3-41d5-92d7-f07a131aa77b">
+<img width="963" alt="image" src="https://github.com/riku1027/terraform-sandbox/assets/45778163/778b8eb7-56c8-463d-ab14-5580d12e9d47">
+<img width="994" alt="image" src="https://github.com/riku1027/terraform-sandbox/assets/45778163/48a584fa-7762-40de-9f9e-0635f92daa82">
+**詳細**
+<img width="1080" alt="image" src="https://github.com/riku1027/terraform-sandbox/assets/45778163/df9dab35-081e-4440-91ce-0983081e99d7">
+
+
+
+
+
+
+
