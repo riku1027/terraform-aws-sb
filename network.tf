@@ -1,3 +1,6 @@
+#-------------------------------------------
+# vpc
+#-------------------------------------------
 resource "aws_vpc" "vpc" {
   cidr_block                       = "192.168.0.0/20"
   instance_tenancy                 = "default"
@@ -11,6 +14,9 @@ resource "aws_vpc" "vpc" {
   }
 }
 
+#-------------------------------------------
+# subnet
+#-------------------------------------------
 resource "aws_subnet" "public_subnet_1a" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "ap-northeast-1a"
@@ -51,7 +57,7 @@ resource "aws_subnet" "private_subnet_1c" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "ap-northeast-1c"
   cidr_block              = "192.168.4.0/24"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name    = "${var.project}-${var.environment}-private-subnet-1c"
     Project = var.project
@@ -59,7 +65,9 @@ resource "aws_subnet" "private_subnet_1c" {
     Type    = "private"
   }
 }
-
+#-------------------------------------------
+# route table
+#-------------------------------------------
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.vpc.id
   tags = {
@@ -96,7 +104,11 @@ resource "aws_route_table_association" "private_rt_1c" {
   route_table_id = aws_route_table.private_rt.id
   subnet_id      = aws_subnet.private_subnet_1c.id
 }
+#-------------------------------------------
+# internet gateway
+#-------------------------------------------
 resource "aws_internet_gateway" "igw" {
+  # NOTE: private subnetからinternetに接続する場合はNAT Gatewayを利用する
   vpc_id = aws_vpc.vpc.id
   tags = {
     Name    = "${var.project}-${var.environment}-igw"
@@ -105,7 +117,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 resource "aws_route" "public_rt_igw_r" {
-  route_table_id = aws_route_table.public_rt.id
+  route_table_id         = aws_route_table.public_rt.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id     = aws_internet_gateway.igw.id
+  gateway_id             = aws_internet_gateway.igw.id
 }
