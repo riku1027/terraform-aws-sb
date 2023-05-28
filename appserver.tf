@@ -45,7 +45,7 @@ resource "aws_ssm_parameter" "password" {
 # EC2 Instance
 #-------------------------------------------
 resource "aws_instance" "app_server" {
-  ami                         = data.aws_ami.amazon_linux2.id
+  ami                         = data.aws_ami.app.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public_subnet_1a.id
   associate_public_ip_address = true
